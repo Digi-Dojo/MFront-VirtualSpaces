@@ -2,6 +2,8 @@ import logo from './logo.svg';
 import './App.css';
 import { NumericField, OptionsSelector } from './components/Fields';
 import { useState } from 'react';
+import { ConfirmationButton } from './components/Buttons';
+import SendIcon from '@mui/icons-material/Send';
 
 function App() {
 
@@ -16,6 +18,7 @@ function App() {
         selectedOption = {type}
         setSelectedOption = {setType}
       />
+      <ConfirmationButton title={"Send"} icon={<SendIcon />}/>
     </div>
   );
 }
