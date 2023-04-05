@@ -12,6 +12,7 @@ const NumericField = ({fieldTitle, numValue, setNumValue}) => {
             onChange={(val) => setNumValue(val.target.value)}
             error = { !isFieldValid(numValue) }
             fullWidth
+            required
         />
     )
 
