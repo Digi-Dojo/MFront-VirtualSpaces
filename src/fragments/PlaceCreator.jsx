@@ -4,7 +4,6 @@ import SendIcon from '@mui/icons-material/Send';
 import { useState } from "react";
 import { Grid } from "@mui/material";
 import { usePlaces } from "../hooks/usePlaces";
-import { StayPrimaryPortraitTwoTone } from "@mui/icons-material";
 
 const PlaceCreator = () => {
 
@@ -31,8 +30,6 @@ const PlaceCreator = () => {
                     <ConfirmationButton title={"Send"} icon={<SendIcon />} onClick = {addAPlace}/>
                 </Grid>
             </Grid>
-            
-            
         </div>
     );
 
