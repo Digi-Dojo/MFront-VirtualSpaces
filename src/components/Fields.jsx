@@ -1,4 +1,4 @@
-import { TextField, FormControl, InputLabel, Select, MenuItem } from "@mui/material";
+import { TextField, FormControl, InputLabel, Select, MenuItem, TextareaAutosize } from "@mui/material";
 
 const NumericField = ({fieldTitle, numValue, setNumValue}) => {
 
@@ -43,4 +43,19 @@ const OptionsSelector = ({fieldTitle, options, selectedOption, setSelectedOption
     )
 }
 
-export {NumericField, OptionsSelector};
+const TextArea = ({title, setContent}) => {
+
+    const handleChange = (val) => setContent(val.target.value);
+
+    return (
+        <TextareaAutosize
+            minRows={3}
+            placeholder={title}
+            style={{ width: "100%"}}
+            required
+            onChange={handleChange}
+        />
+    )
+}
+
+export {NumericField, OptionsSelector, TextArea};
