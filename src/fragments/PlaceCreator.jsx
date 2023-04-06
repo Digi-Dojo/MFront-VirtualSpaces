@@ -6,7 +6,7 @@ import { Grid } from "@mui/material";
 import { usePlaces } from "../hooks/usePlaces";
 import { StayPrimaryPortraitTwoTone } from "@mui/icons-material";
 
-const PlaceCreator = (/* use qualcosa*/) => {
+const PlaceCreator = () => {
 
     const [startupId, setStartupId] = useState();
     const [type, setType] = useState();
