@@ -28,6 +28,7 @@ const OptionsSelector = ({fieldTitle, options, selectedOption, setSelectedOption
             <InputLabel>{fieldTitle}</InputLabel>
             <Select
                 id="options-selector"
+                variant="filled"
                 value={selectedOption}
                 label={fieldTitle}
                 onChange={handleChange}

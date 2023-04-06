@@ -3,11 +3,16 @@ import { ConfirmationButton } from "../components/Buttons";
 import SendIcon from '@mui/icons-material/Send';
 import { useState } from "react";
 import { Grid } from "@mui/material";
+import { usePlaces } from "../hooks/usePlaces";
+import { StayPrimaryPortraitTwoTone } from "@mui/icons-material";
 
 const PlaceCreator = (/* use qualcosa*/) => {
 
     const [startupId, setStartupId] = useState();
     const [type, setType] = useState();
+    const setPlace = usePlaces();
+
+    const addAPlace = () => setPlace(startupId, type);
 
     return(
         <div>
@@ -23,7 +28,7 @@ const PlaceCreator = (/* use qualcosa*/) => {
                     />
                 </Grid>
                 <Grid item xs={12}>
-                    <ConfirmationButton title={"Send"} icon={<SendIcon />}/>
+                    <ConfirmationButton title={"Send"} icon={<SendIcon />} onClick = {addAPlace}/>
                 </Grid>
             </Grid>
             
