@@ -26,7 +26,7 @@ const NoteCreator = () => {
                 <Grid item xs={12}>
                     <OptionsSelector 
                         fieldTitle = "Place" 
-                        options = {["place1", "place2"]} /* da cambiare a places */
+                        options = {places} 
                         selectedOption = {selectedPlace} 
                         setSelectedOption = {setSelectedPlace} 
                     />
