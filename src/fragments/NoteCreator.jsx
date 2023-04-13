@@ -22,6 +22,9 @@ const NoteCreator = () => {
 
     return (
         <div>
+        
+            <h1>Note</h1>
+        
             <Grid container spacing={2}>
                 <Grid item xs={12}>
                     <OptionsSelector 

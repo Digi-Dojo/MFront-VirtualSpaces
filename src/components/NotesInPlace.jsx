@@ -9,7 +9,6 @@ export const NotesInPlace = ({placeId}) => {
 
     return (
       <div>
-        <p>Place name</p>
         {notes.map((note => ((note.placeId = placeId?<NoteFragment key={note.id} note={note}/>: null)|| null)))}
       </div>
     );

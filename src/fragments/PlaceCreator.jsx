@@ -5,6 +5,7 @@ import { useState } from "react";
 import { Grid } from "@mui/material";
 import { usePlaces } from "../hooks/usePlaces";
 
+
 const PlaceCreator = () => {
 
     const [startupId, setStartupId] = useState();
@@ -15,6 +16,8 @@ const PlaceCreator = () => {
 
     return(
         <div>
+        
+        <h1>Place</h1>
             <Grid container spacing={2}>
                 <Grid item xs={6}>
                     <NumericField fieldTitle={"Startup Id"} numValue = {startupId} setNumValue = {setStartupId} />
@@ -32,7 +35,6 @@ const PlaceCreator = () => {
             </Grid>
         </div>
     );
-
 }
 
 export default PlaceCreator;

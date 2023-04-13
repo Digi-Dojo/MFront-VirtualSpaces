@@ -10,19 +10,16 @@ const NoteFragment = ({ note }) => {
     }
 
     return (
-    <div key={note.id}>
-        <div className="card-header">
-            <Button variant="outlined" onClick={changeStatus}
-                    title={status ? 'Mark as added' : 'Mark as removed'}>
-            </Button>
+        <div key={note.id}>
+            <div className="card-header">
+                <Button variant="outlined" onClick={changeStatus}
+                        title={status ? 'Mark as added' : 'Mark as removed'}>
+                </Button>
+            </div>
+            <p>{note.text}</p>
+            <p>{note.placeId}</p>
         </div>
-        <TextField value={note.text}/>
-        <TextField value={note.placeId}/>
-        
-    </div>
     )
-    
-
 }
 
 export default NoteFragment;

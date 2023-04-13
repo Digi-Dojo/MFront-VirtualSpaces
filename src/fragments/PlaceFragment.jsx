@@ -21,9 +21,9 @@ const PlaceFragment = ({ place }) => {
 
     return (
     <div key={place.id}>
-        <TextField value={place.startupId}/>
+        <p>{place.startupId}</p>
         <CustomIcon type={place.type}/>
-        <TextField value={place.type}/>
+        <p>{place.type}</p>
     </div>
     )
 }
