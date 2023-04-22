@@ -1,11 +1,10 @@
-import { List, ListItem, ListItemText } from "@mui/material";
 import { useNotes } from "../hooks/useNotes";
 import NoteFragment from "../fragments/NoteFragment";
-import { useState } from "react";
 
 export const NotesInPlace = ({placeId}) => {
     
     const [notes] = useNotes();
+
 
     return (
       <div>

@@ -6,9 +6,9 @@ import { usePlaces } from "../hooks/usePlaces";
 import { NotesInPlace } from "./NotesInPlace";
 
 export const NotesList = () => {
-    
-    const [places] = useState(usePlaces());
 
+    const [places] = usePlaces();
+    
     return (
         places.map((place => (place && <NotesInPlace placeId={place.id}/>)))
     );

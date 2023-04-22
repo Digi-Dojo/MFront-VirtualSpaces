@@ -1,6 +1,6 @@
 import { TextField, FormControl, InputLabel, Select, MenuItem, TextareaAutosize } from "@mui/material";
 
-const NumericField = ({fieldTitle, numValue, setNumValue}) => {
+const NumericField = ({fieldTitle, numValue, onChange}) => {
 
     const isFieldValid = (fieldVal) => (fieldVal !== '' && !isNaN(fieldVal))
 
@@ -9,18 +9,15 @@ const NumericField = ({fieldTitle, numValue, setNumValue}) => {
             id="numeric-field"
             label={fieldTitle}
             variant="filled"
-            onChange={(val) => setNumValue(val.target.value)}
+            onChange={onChange}
             error = { !isFieldValid(numValue) }
             fullWidth
             required
         />
     )
-
 }
 
-const OptionsSelector = ({fieldTitle, options, selectedOption, setSelectedOption}) => {
-
-    const handleChange = (val) => setSelectedOption(val.target.value);
+const OptionsSelector = ({fieldTitle, options, selectedOption, handleChange}) => {
     const isFieldValid = (fieldVal) => (fieldVal !== undefined);
     
     return (

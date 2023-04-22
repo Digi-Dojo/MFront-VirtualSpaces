@@ -1,19 +1,22 @@
-import { TextField } from '@mui/material';
 import DesktopMacIcon from '@mui/icons-material/DesktopMac';
 import GroupsIcon from '@mui/icons-material/Groups';
 import FilterFramesIcon from '@mui/icons-material/FilterFrames';
 import HourglassEmptyIcon from '@mui/icons-material/HourglassEmpty';
 
 const CustomIcon = (type) => {
-    switch(type) {
-        case 'Personal Desk':
+     
+    switch(type.type) {
+        case 'PERSONAL_DESK':
             return <DesktopMacIcon/>;
-        case 'Meeting Room':
+        case 'MEETING_ROOM':
             return <GroupsIcon/>
-        case 'Board':
+        case 'BOARD':
             return <FilterFramesIcon/>
         default:
-            return <HourglassEmptyIcon/>
+            return <section>
+                <HourglassEmptyIcon/>
+                {type.type}
+            </section>
     }
 }
 
@@ -28,4 +31,15 @@ const PlaceFragment = ({ place }) => {
     )
 }
 
+const DummyPlaceFragment = () => {
+
+    const typeBoard = 'Personal Desk';
+    return (
+    <div>
+        <p>23</p>
+        <CustomIcon type = {"Board"}/>
+        <p>Personal Desk</p>
+    </div>
+    )
+}
 export default PlaceFragment;

@@ -2,11 +2,13 @@ import logo from './logo.svg';
 import './App.css';
 import PlaceCreator from './fragments/PlaceCreator';
 import NoteCreator from './fragments/NoteCreator';
-import { NotesList } from './components/NotesList';
-import { PlaceList } from './components/PlacesList';
+import NoteFragment from './fragments/NoteFragment';
+import PlaceFragment from './fragments/PlaceFragment';
+import {NotesList} from './components/NotesList';
+import {PlacesList} from './components/PlacesList';
+
 
 function App() {
-
 
   return (
     <div className="App">
@@ -16,7 +18,8 @@ function App() {
       <br/> <br/>
       <NotesList/>
       <br/> <br/>
-      <PlaceList/>
+      <PlacesList/>
+      
     </div>
   );
 }

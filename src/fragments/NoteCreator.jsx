@@ -5,9 +5,40 @@ import { ConfirmationButton } from '../components/Buttons';
 import { Grid } from '@mui/material';
 import SendIcon from '@mui/icons-material/Send';
 import { useNotes } from '../hooks/useNotes';
+import { useCreateNotes } from '../hooks/useCreateNotes';
 
 const NoteCreator = () => {
+    const places = usePlaces()
+    const [registeredNote, setRegisteredNote] = useState(null);
+    const [loading, error, registerNote] = useCreateNotes();
+    const [formData, setFormData] = useState({
+        placeId: 0,
+        description: "",
+    })
+    
+    const handleSubmit = async(e) => {
+            e.preventDefault()
+            const response = await registerNote(formData)
+            setRegisteredNote(response)
+    }
 
+    const handleDesChange = (e) => {
+        setFormData({
+            ...formData, 
+            description: e.target.value,
+        })
+    }
+
+    const handleChangePlaceID = (e) => {
+        setFormData({
+            ...formData, 
+            placeId: e.target.value,
+        })
+    }
+
+
+
+    /*
     const [content, setContent] = useState("");
     const [places, setPlaces] = usePlaces();
     const [selectedPlace, setSelectedPlace] = useState();
@@ -43,7 +74,7 @@ const NoteCreator = () => {
             </Grid>
         </div>
     )
-
+*/   
 }
 
 export default NoteCreator;

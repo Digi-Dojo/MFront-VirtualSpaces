@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react';
-import axios from '../utils/axios'
+import {client as axios} from '../utils/axios'
 
 export const useNotes = () => {
 
     const [notes, setNotes] = useState([]);
 
     async function post({text, status, placeId, date}) {
-    const { data: { message }} = await axios.post('/notes/add', {
+    const { data: { message }} = await axios.post('/v1/notes/create', {
             text: text,
             status: status,
             placeId: placeId,
@@ -22,7 +22,7 @@ export const useNotes = () => {
     }
 
     async function get() {
-        const { data: { message }} = await axios.get('/notes')
+        const { data: { message }} = await axios.get('/v1/notes')
     
         const allNotes = [];
     
