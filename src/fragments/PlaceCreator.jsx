@@ -41,7 +41,7 @@ const PlaceCreator = () => {
     
     return <section>
         <h1>Create a Place</h1>
-        {registeredPlace === null &&
+        {
             <form>
             {JSON.stringify(formData)}
             <Grid container spacing={2}>

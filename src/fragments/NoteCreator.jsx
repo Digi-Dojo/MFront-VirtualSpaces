@@ -1,5 +1,5 @@
 import { OptionsSelector, TextArea } from '../components/Fields';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { usePlaces } from '../hooks/usePlaces';
 import { ConfirmationButton } from '../components/Buttons';
 import { Grid } from '@mui/material';
@@ -8,12 +8,14 @@ import { useNotes } from '../hooks/useNotes';
 import { useCreateNotes } from '../hooks/useCreateNotes';
 
 const NoteCreator = () => {
-    const places = usePlaces()
+    const [places, setPlaces] = usePlaces()
+    const [placesId, setPlacesId] = useState([]);
+    const [disableSubButton, setDisableSubButton] = useState(true);
     const [registeredNote, setRegisteredNote] = useState(null);
     const [loading, error, registerNote] = useCreateNotes();
     const [formData, setFormData] = useState({
         placeId: 0,
-        description: "",
+        text: "",
     })
     
     const handleSubmit = async(e) => {
@@ -25,11 +27,12 @@ const NoteCreator = () => {
     const handleDesChange = (e) => {
         setFormData({
             ...formData, 
-            description: e.target.value,
+            text: e.target.value,
         })
     }
 
     const handleChangePlaceID = (e) => {
+        
         setFormData({
             ...formData, 
             placeId: e.target.value,
@@ -37,44 +40,40 @@ const NoteCreator = () => {
     }
 
 
+    useEffect(() => {
+    setPlacesId(places.map(place => place.id))
+    }, [places] )
 
-    /*
-    const [content, setContent] = useState("");
-    const [places, setPlaces] = usePlaces();
-    const [selectedPlace, setSelectedPlace] = useState();
-    const [notes, setNote] = useNotes();
-
-    const addANote = () => {
-        const nowDate = new Date(); 
-        const date = nowDate.getFullYear()+'/'+(nowDate.getMonth()+1)+'/'+nowDate.getDate(); 
-
-        setNote(content, true, selectedPlace, date);
-    }
+    useEffect(() => {
+        setDisableSubButton(Object.values(formData).some(x => x === ''))
+    }, [formData])
 
     return (
         <div>
         
             <h1>Note</h1>
-        
+            <form>
+            {JSON.stringify(placesId)}
             <Grid container spacing={2}>
                 <Grid item xs={12}>
                     <OptionsSelector 
                         fieldTitle = "Place" 
-                        options = {places} 
-                        selectedOption = {selectedPlace} 
-                        setSelectedOption = {setSelectedPlace} 
+                        options = {placesId} 
+                        selectedOption = {formData.placeId} 
+                        handleChange={handleChangePlaceID}
                     />
                 </Grid>
                 <Grid item xs={12}>
-                    <TextArea title = "Note" setContent = {setContent} /> 
+                    <TextArea title = "Note" setContent = {formData.text} onChange={handleDesChange}/> 
                 </Grid>
                 <Grid item xs={12}>
-                    <ConfirmationButton title={"Send"} icon={<SendIcon />} onClick = {addANote} />
+                    <ConfirmationButton title={"Send"} icon={<SendIcon />} onClick = {handleSubmit} disabled = {loading | disableSubButton}/>
                 </Grid>
             </Grid>
+            </form>
         </div>
     )
-*/   
+ 
 }
 
 export default NoteCreator;

@@ -40,17 +40,16 @@ const OptionsSelector = ({fieldTitle, options, selectedOption, handleChange}) =>
     )
 }
 
-const TextArea = ({title, setContent}) => {
+const TextArea = ({title, setContent, onChange}) => {
 
-    const handleChange = (val) => setContent(val.target.value);
-
+    
     return (
         <TextareaAutosize
             minRows={3}
             placeholder={title}
             style={{ width: "100%"}}
             required
-            onChange={handleChange}
+            onChange={onChange}
         />
     )
 }
