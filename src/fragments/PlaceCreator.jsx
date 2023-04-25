@@ -19,6 +19,7 @@ const PlaceCreator = () => {
         e.preventDefault()
         const response = await registerPlace(formData)
         setRegisteredPlace(response)
+        window.location.reload(false);  // a refresh is needed to update PlaceList, to be changed
     }
 
     const handleChangeStartID = (e) => {

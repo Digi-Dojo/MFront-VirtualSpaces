@@ -23,23 +23,12 @@ const CustomIcon = (type) => {
 const PlaceFragment = ({ place }) => {
 
     return (
-    <div key={place.id}>
-        <p>{place.startupId}</p>
+    <div style={{border: '10 black', padding: 50, width: 160, backgroundColor: 'pink', borderRadius: '30px' }} key={place.id}>
+        <p>Startup: {place.startupId}</p>
         <CustomIcon type={place.type}/>
         <p>{place.type}</p>
     </div>
     )
 }
 
-const DummyPlaceFragment = () => {
-
-    const typeBoard = 'Personal Desk';
-    return (
-    <div>
-        <p>23</p>
-        <CustomIcon type = {"Board"}/>
-        <p>Personal Desk</p>
-    </div>
-    )
-}
 export default PlaceFragment;

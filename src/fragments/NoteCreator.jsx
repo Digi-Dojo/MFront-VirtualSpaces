@@ -2,26 +2,29 @@ import { OptionsSelector, TextArea } from '../components/Fields';
 import { useState, useEffect } from 'react';
 import { usePlaces } from '../hooks/usePlaces';
 import { ConfirmationButton } from '../components/Buttons';
-import { Grid } from '@mui/material';
+import { Grid, Alert, FormControlLabel, Switch } from '@mui/material';
 import SendIcon from '@mui/icons-material/Send';
-import { useNotes } from '../hooks/useNotes';
 import { useCreateNotes } from '../hooks/useCreateNotes';
 
 const NoteCreator = () => {
     const [places, setPlaces] = usePlaces()
+    const [status, setStatus] = useState(false)
     const [placesId, setPlacesId] = useState([]);
     const [disableSubButton, setDisableSubButton] = useState(true);
     const [registeredNote, setRegisteredNote] = useState(null);
     const [loading, error, registerNote] = useCreateNotes();
     const [formData, setFormData] = useState({
-        placeId: 0,
         text: "",
+        statusAdded: false,
+        placeId: 0,
+        date: "26/05/2023",
     })
     
     const handleSubmit = async(e) => {
             e.preventDefault()
             const response = await registerNote(formData)
             setRegisteredNote(response)
+            //window.location.reload(false); // a refresh is needed to update NotesList, to be changed
     }
 
     const handleDesChange = (e) => {
@@ -31,14 +34,20 @@ const NoteCreator = () => {
         })
     }
 
+    const handleStatChange = (e) => {
+        setFormData({
+            ...formData, 
+            statusAdded: !status,
+        })
+        setStatus(e.target.checked)
+    }
+
     const handleChangePlaceID = (e) => {
-        
         setFormData({
             ...formData, 
             placeId: e.target.value,
         })
     }
-
 
     useEffect(() => {
     setPlacesId(places.map(place => place.id))
@@ -49,29 +58,41 @@ const NoteCreator = () => {
     }, [formData])
 
     return (
-        <div>
-        
-            <h1>Note</h1>
-            <form>
-            {JSON.stringify(placesId)}
-            <Grid container spacing={2}>
-                <Grid item xs={12}>
-                    <OptionsSelector 
-                        fieldTitle = "Place" 
-                        options = {placesId} 
-                        selectedOption = {formData.placeId} 
-                        handleChange={handleChangePlaceID}
-                    />
+        <section>
+            <h1>Create a note</h1>
+            {
+                <form>
+                {JSON.stringify(formData)}
+                <Grid container spacing={2}>
+                    <Grid item xs={12}>
+                        <OptionsSelector 
+                            fieldTitle = "Place" 
+                            options = {placesId} 
+                            selectedOption = {formData.placeId} 
+                            handleChange={handleChangePlaceID}
+                        />
+                    </Grid>
+                    <Grid item xs={12}>
+                        <TextArea title = "Note" setContent = {formData.text} onChange={handleDesChange}/> 
+                    </Grid>
+                    <Grid item xs={12}>
+                        <FormControlLabel control={<Switch checked={status} onChange={handleStatChange}  inputProps={{ 'aria-label': 'controlled' }}/>} label="Status" />
+                    </Grid>
+                    <Grid item xs={12}>
+                        <ConfirmationButton title={"Send"} icon={<SendIcon />} onClick = {handleSubmit} disabled = {loading | disableSubButton}/>
+                    </Grid>
                 </Grid>
-                <Grid item xs={12}>
-                    <TextArea title = "Note" setContent = {formData.text} onChange={handleDesChange}/> 
-                </Grid>
-                <Grid item xs={12}>
-                    <ConfirmationButton title={"Send"} icon={<SendIcon />} onClick = {handleSubmit} disabled = {loading | disableSubButton}/>
-                </Grid>
-            </Grid>
-            </form>
-        </div>
+                </form>
+            }
+            
+            {error != null &&
+                <Alert variant="outlined" severity="error" style={{ marginTop: '16px' }}>An error occured: {error}</Alert>
+            }
+            {registeredNote != null &&
+                <Alert variant="outlined" severity="success" style={{ marginTop: '16px' }}> A new note was successfully created in the place #{registeredNote.placeId}</Alert>
+                //todo: add button to continue or do something next
+            }
+        </section>
     )
  
 }
