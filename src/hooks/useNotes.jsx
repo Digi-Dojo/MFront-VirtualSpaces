@@ -4,7 +4,7 @@ import {client as axios} from '../utils/axios'
 export const useNotes = () => {
 
     const [notes, setNotes] = useState([]);
-
+/*
     async function post({text, status, placeId, date}) {
     const { data: { message }} = await axios.post('/v1/notes/create', {
             text: text,
@@ -14,13 +14,28 @@ export const useNotes = () => {
         })
 
         return message;
-
-    }
+    
+      }
 
     function setNote(note) {
     return post(note);
     }
+*/
 
+async function fetch() {
+  const { data } = await axios.get('/v1/notes/getAll');
+  setNotes(data);
+}
+
+function fetchNotes() {
+  fetch();
+}
+
+  useEffect(fetchNotes, []);
+
+  return [notes, setNotes];
+};
+/*
     async function get() {
         const { data: { message }} = await axios.get('/v1/notes')
     
@@ -45,5 +60,6 @@ export const useNotes = () => {
       useEffect(getNotes, [])
 
   return [notes, setNote];
-
 }
+*/
+

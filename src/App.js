@@ -6,7 +6,11 @@ import NoteFragment from './fragments/NoteFragment';
 import PlaceFragment from './fragments/PlaceFragment';
 import {NotesList} from './components/NotesList';
 import {PlacesList} from './components/PlacesList';
-
+import { NotesInPlace } from './components/NotesInPlace';
+/*
+      <NotesList/>
+      <br/> <br/>
+*/
 
 function App() {
 
@@ -15,8 +19,6 @@ function App() {
       <PlaceCreator />
       <br/> <br/>
       <NoteCreator />
-      <br/> <br/>
-      <NotesList/>
       <br/> <br/>
       <PlacesList/>
       

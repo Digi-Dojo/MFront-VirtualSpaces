@@ -8,16 +8,16 @@ import { useCreateNotes } from '../hooks/useCreateNotes';
 
 const NoteCreator = () => {
     const [places, setPlaces] = usePlaces()
-    const [status, setStatus] = useState(false)
-    const [placesId, setPlacesId] = useState([]);
-    const [disableSubButton, setDisableSubButton] = useState(true);
-    const [registeredNote, setRegisteredNote] = useState(null);
-    const [loading, error, registerNote] = useCreateNotes();
+    const [placesId, setPlacesId] = useState([])
+    const [disableSubButton, setDisableSubButton] = useState(true)
+    const [registeredNote, setRegisteredNote] = useState(null)
+    const [loading, error, registerNote] = useCreateNotes()
+    const currentDate = new Date()
     const [formData, setFormData] = useState({
         text: "",
-        statusAdded: false,
+        statusAdded: true,
         placeId: 0,
-        date: "26/05/2023",
+        date: currentDate.getDate().toString() + "/" + (currentDate.getMonth()+1).toString() + "/" + currentDate.getFullYear().toString(),
     })
     
     const handleSubmit = async(e) => {
@@ -33,7 +33,7 @@ const NoteCreator = () => {
             text: e.target.value,
         })
     }
-
+/*
     const handleStatChange = (e) => {
         setFormData({
             ...formData, 
@@ -41,7 +41,7 @@ const NoteCreator = () => {
         })
         setStatus(e.target.checked)
     }
-
+*/
     const handleChangePlaceID = (e) => {
         setFormData({
             ...formData, 
@@ -57,6 +57,11 @@ const NoteCreator = () => {
         setDisableSubButton(Object.values(formData).some(x => x === ''))
     }, [formData])
 
+    /*
+        <Grid item xs={12}>
+            <FormControlLabel control={<Switch checked={status} onChange={handleStatChange}  inputProps={{ 'aria-label': 'controlled' }}/>} label="Status" />
+        </Grid>
+    */
     return (
         <section>
             <h1>Create a note</h1>
@@ -76,9 +81,6 @@ const NoteCreator = () => {
                         <TextArea title = "Note" setContent = {formData.text} onChange={handleDesChange}/> 
                     </Grid>
                     <Grid item xs={12}>
-                        <FormControlLabel control={<Switch checked={status} onChange={handleStatChange}  inputProps={{ 'aria-label': 'controlled' }}/>} label="Status" />
-                    </Grid>
-                    <Grid item xs={12}>
                         <ConfirmationButton title={"Send"} icon={<SendIcon />} onClick = {handleSubmit} disabled = {loading | disableSubButton}/>
                     </Grid>
                 </Grid>
@@ -90,11 +92,9 @@ const NoteCreator = () => {
             }
             {registeredNote != null &&
                 <Alert variant="outlined" severity="success" style={{ marginTop: '16px' }}> A new note was successfully created in the place #{registeredNote.placeId}</Alert>
-                //todo: add button to continue or do something next
             }
         </section>
     )
- 
 }
 
 export default NoteCreator;

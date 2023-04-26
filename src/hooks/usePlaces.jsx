@@ -26,12 +26,12 @@ export const usePlaces = () => {
       setPlaces(data);
     }
 
-    function fetchNotes() {
+    function fetchPlaces() {
       fetch();
     }
 
-      useEffect(fetchNotes, []);
-
+      useEffect(fetchPlaces, []);
+      
       return [places, setPlaces];
 };
 /*

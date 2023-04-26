@@ -11,7 +11,7 @@ const NoteFragment = ({ note }) => {
     }
 
     return (
-        <div key={note.id}>
+        <div key={note.id} style={{border: '2px', width: '100px', backgroundColor: 'white', borderRadius: "30px"}}>
             <div className="card-header">
                 <Button variant="outlined" onClick={changeStatus}
                         title={status ? 'Mark as added' : 'Mark as removed'}>
@@ -19,28 +19,6 @@ const NoteFragment = ({ note }) => {
             </div>
             <p>{note.text}</p>
             <p>{note.placeId}</p>
-        </div>
-    )
-}
-
-
-const DummyNoteFragment = () => {
-    
-    const [status, setStatus] = useState(true);
-
-    const changeStatus = () => {
-        setStatus(!status);
-    }
-
-    return (
-        <div style={{border: '2px'}}>
-            <div className="card-header">
-                <Button variant="outlined" onClick={changeStatus}
-                        title={status ? 'Mark as added' : 'Mark as removed'}>{status ? 'Mark as added' : 'Mark as removed'}
-                </Button>
-            </div>
-            <p>Text: "Text note"</p>
-            <p>Place id: 34</p>
         </div>
     )
 }
