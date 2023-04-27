@@ -25,12 +25,13 @@ const CustomIcon = (type) => {
 const PlaceFragment = ({ place }) => {
 
     return (
-    <div style={{border: '10 black', padding: 50, width: 160, backgroundColor: 'pink', borderRadius: '30px' }} key={place.id}>
+    <div key={place.id} style={{padding: 50, backgroundColor: 'pink', borderRadius: '30px' }} key={place.id}>
         <h3>Place #{place.id}</h3>
         <p>Startup: {place.startupId}</p>
         <CustomIcon type={place.type}/>
         <p>{place.type}</p>
         <FullScreenDialog type='notes' placeId={place.id}/>
+        <FullScreenDialog type='members' placeId={place.id}/>
        
     </div>
     )

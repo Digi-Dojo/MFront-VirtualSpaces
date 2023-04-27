@@ -11,15 +11,14 @@ const NoteFragment = ({ note }) => {
     }
 
     return (
-        <div key={note.id} style={{border: '2px', width: '100px', backgroundColor: 'white', borderRadius: "30px"}}>
-            <div className="card-header">
-                Current status: {status ? 'ADDED' : 'REMOVED'}
-                <Button variant="contained" onClick={changeStatus}
-                        title={status ? 'Mark as added' : 'Mark as removed'}>
-                    {status ? 'REMOVE' : 'ADD'}
+        <div key={note.id} style={{border: '2px', backgroundColor: '#f6f5aa', borderRadius: "5px", padding: 10}}>
+            <p>{note.text}</p>
+            <div>
+                <Button variant="outlined" onClick={changeStatus}
+                        title='REMOVE'>
+                    REMOVE
                 </Button>
             </div>
-            <p>{note.text}</p>
         </div>
     )
 }
