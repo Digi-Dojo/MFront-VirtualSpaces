@@ -3,12 +3,7 @@ import { usePlaces } from "../hooks/usePlaces";
 import PlaceFragment from "../fragments/PlaceFragment";
 import { useEffect } from "react";
 
-export const PlacesList = () => {
-    
-    const [places] = usePlaces();
-    useEffect(() => {
-        
-    }, [places])
+export const PlacesList = ({places, setPlaces}) => {
     
     return (
         <div>

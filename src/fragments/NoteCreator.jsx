@@ -4,14 +4,13 @@ import { usePlaces } from '../hooks/usePlaces';
 import { ConfirmationButton } from '../components/Buttons';
 import { Grid, Alert, FormControlLabel, Switch } from '@mui/material';
 import SendIcon from '@mui/icons-material/Send';
-import { useCreateNotes } from '../hooks/useCreateNotes';
+import { useNotes } from '../hooks/useNotes';
+import { ErrorAlert, SuccessAlert } from '../components/Alerts';
 
-const NoteCreator = () => {
-    const [places, setPlaces] = usePlaces()
-    const [placesId, setPlacesId] = useState([])
-    const [disableSubButton, setDisableSubButton] = useState(true)
-    const [registeredNote, setRegisteredNote] = useState(null)
-    const [loading, error, registerNote] = useCreateNotes()
+const NoteCreator = ({notes, setNotes, places}) => {
+
+    //0 - no status | 1 - error | 2 - success
+    const [status, setStatus] = useState({code: 0, message: ""});
     const currentDate = new Date()
     const [formData, setFormData] = useState({
         text: "",
@@ -21,10 +20,11 @@ const NoteCreator = () => {
     })
     
     const handleSubmit = async(e) => {
-            e.preventDefault()
-            const response = await registerNote(formData)
-            setRegisteredNote(response)
-            //window.location.reload(false); // a refresh is needed to update NotesList, to be changed
+            
+        setNotes(formData)
+        .then(() => setStatus({code: 2, message: "Note added successfully"}))
+        .catch((err) => setStatus({code: 1, message: err}))
+            
     }
 
     const handleDesChange = (e) => {
@@ -49,14 +49,6 @@ const NoteCreator = () => {
         })
     }
 
-    useEffect(() => {
-    setPlacesId(places.map(place => place.id))
-    }, [places] )
-
-    useEffect(() => {
-        setDisableSubButton(Object.values(formData).some(x => x === ''))
-    }, [formData])
-
     /*
         <Grid item xs={12}>
             <FormControlLabel control={<Switch checked={status} onChange={handleStatChange}  inputProps={{ 'aria-label': 'controlled' }}/>} label="Status" />
@@ -65,34 +57,32 @@ const NoteCreator = () => {
     return (
         <section>
             <h1>Create a note</h1>
-            {
-                <form>
-                {JSON.stringify(formData)}
-                <Grid container spacing={2}>
-                    <Grid item xs={12}>
-                        <OptionsSelector 
-                            fieldTitle = "Place" 
-                            options = {placesId} 
-                            selectedOption = {formData.placeId} 
-                            handleChange={handleChangePlaceID}
-                        />
-                    </Grid>
-                    <Grid item xs={12}>
-                        <TextArea title = "Note" setContent = {formData.text} onChange={handleDesChange}/> 
-                    </Grid>
-                    <Grid item xs={12}>
-                        <ConfirmationButton title={"Send"} icon={<SendIcon />} onClick = {handleSubmit} disabled = {loading | disableSubButton}/>
-                    </Grid>
-                </Grid>
-                </form>
-            }
             
-            {error != null &&
-                <Alert variant="outlined" severity="error" style={{ marginTop: '16px' }}>An error occured: {error}</Alert>
-            }
-            {registeredNote != null &&
-                <Alert variant="outlined" severity="success" style={{ marginTop: '16px' }}> A new note was successfully created in the place #{registeredNote.placeId}</Alert>
-            }
+                <form>
+                
+                    <Grid container spacing={2}>
+                        <Grid item xs={12}>
+                            <OptionsSelector 
+                                fieldTitle = "Place" 
+                                options = { places.map((place, index) => place.id)} 
+                                selectedOption = {formData.placeId} 
+                                handleChange={handleChangePlaceID}
+                            />
+                        </Grid>
+                        <Grid item xs={12}>
+                            <TextArea title = "Note" setContent = {formData.text} onChange={handleDesChange}/> 
+                        </Grid>
+                        <Grid item xs={12}>
+                            <ConfirmationButton title={"Send"} icon={<SendIcon />} onClick = {handleSubmit} disabled = { formData.text === "" || formData.placeId === 0 }/>
+                        </Grid>
+                    </Grid>
+
+                </form>
+
+                { status.code === 1 ? <ErrorAlert message={status.message} /> : <></> }
+                { status.code === 2 ? <SuccessAlert message={status.message} /> : <></> }
+
+
         </section>
     )
 }

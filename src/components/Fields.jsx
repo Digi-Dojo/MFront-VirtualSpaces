@@ -2,7 +2,7 @@ import { TextField, FormControl, InputLabel, Select, MenuItem, TextareaAutosize 
 
 const NumericField = ({fieldTitle, numValue, onChange}) => {
 
-    const isFieldValid = (fieldVal) => (fieldVal !== '' && !isNaN(fieldVal))
+    const isFieldValid = (fieldVal) => (fieldVal !== '' && !isNaN(fieldVal) && fieldVal !== null)
 
     return (
         <TextField
@@ -18,7 +18,7 @@ const NumericField = ({fieldTitle, numValue, onChange}) => {
 }
 
 const OptionsSelector = ({fieldTitle, options, selectedOption, handleChange}) => {
-    const isFieldValid = (fieldVal) => (fieldVal !== undefined);
+    const isFieldValid = (fieldVal) => (fieldVal !== undefined && fieldVal !== null);
     
     return (
         <FormControl fullWidth required error = { !isFieldValid(selectedOption)}>
