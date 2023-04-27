@@ -4,35 +4,33 @@ import {client as axios} from '../utils/axios'
 export const usePlaces = () => {
 
     const [places, setPlaces] = useState([]);
-/*
+
     async function post({startupId, type}) {
-    const { data: { message }} = await axios.post('/v1/places/create', {
-        startupId: startupId,
-        type: type
-    })
+      const { data: { message }} = await axios.post('/v1/places/create', {
+          startupId: startupId,
+          type: type
+      })
 
-    return message;
-
+      return message;
     }
 
     function setPlace(place) {
       return post(place);
     }
 
-*/
-
-    async function fetch() {
+    async function get() {
       const { data } = await axios.get('/v1/places/getAll');
+      console.log(data);
       setPlaces(data);
     }
 
-    function fetchPlaces() {
-      fetch();
+    function getPlaces() {
+      get()
     }
 
-      useEffect(fetchPlaces, []);
-      
-      return [places, setPlaces];
+    useEffect(getPlaces, []);
+    
+    return [places, setPlace];
 };
 /*
 
