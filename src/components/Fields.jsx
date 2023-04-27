@@ -1,27 +1,24 @@
 import { TextField, FormControl, InputLabel, Select, MenuItem, TextareaAutosize } from "@mui/material";
 
-const NumericField = ({fieldTitle, numValue, setNumValue}) => {
+const NumericField = ({fieldTitle, numValue, onChange}) => {
 
-    const isFieldValid = (fieldVal) => (fieldVal !== '' && !isNaN(fieldVal))
+    const isFieldValid = (fieldVal) => (fieldVal !== '' && !isNaN(fieldVal) && fieldVal !== null)
 
     return (
         <TextField
             id="numeric-field"
             label={fieldTitle}
             variant="filled"
-            onChange={(val) => setNumValue(val.target.value)}
+            onChange={onChange}
             error = { !isFieldValid(numValue) }
             fullWidth
             required
         />
     )
-
 }
 
-const OptionsSelector = ({fieldTitle, options, selectedOption, setSelectedOption}) => {
-
-    const handleChange = (val) => setSelectedOption(val.target.value);
-    const isFieldValid = (fieldVal) => (fieldVal !== undefined);
+const OptionsSelector = ({fieldTitle, options, selectedOption, handleChange}) => {
+    const isFieldValid = (fieldVal) => (fieldVal !== undefined && fieldVal !== null);
     
     return (
         <FormControl fullWidth required error = { !isFieldValid(selectedOption)}>
@@ -43,17 +40,16 @@ const OptionsSelector = ({fieldTitle, options, selectedOption, setSelectedOption
     )
 }
 
-const TextArea = ({title, setContent}) => {
+const TextArea = ({title, setContent, onChange}) => {
 
-    const handleChange = (val) => setContent(val.target.value);
-
+    
     return (
         <TextareaAutosize
             minRows={3}
             placeholder={title}
             style={{ width: "100%"}}
             required
-            onChange={handleChange}
+            onChange={onChange}
         />
     )
 }

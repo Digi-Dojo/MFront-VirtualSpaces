@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Button, TextField } from '@mui/material';
+import { BorderAllOutlined } from '@mui/icons-material';
 
 const NoteFragment = ({ note }) => {
     
@@ -10,19 +11,16 @@ const NoteFragment = ({ note }) => {
     }
 
     return (
-    <div key={note.id}>
-        <div className="card-header">
-            <Button variant="outlined" onClick={changeStatus}
-                    title={status ? 'Mark as added' : 'Mark as removed'}>
-            </Button>
+        <div key={note.id} style={{border: '2px', backgroundColor: '#f6f5aa', borderRadius: "5px", padding: 10}}>
+            <p>{note.text}</p>
+            <div>
+                <Button variant="outlined" onClick={changeStatus}
+                        title='REMOVE'>
+                    REMOVE
+                </Button>
+            </div>
         </div>
-        <TextField value={note.text}/>
-        <TextField value={note.placeId}/>
-        
-    </div>
     )
-    
-
 }
 
 export default NoteFragment;
