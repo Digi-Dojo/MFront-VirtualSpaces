@@ -1,47 +1,37 @@
 import { useState, useEffect } from 'react';
-import axios from '../utils/axios'
+import {client as axios} from '../utils/axios'
 
-export const usePlaces = () => {
+export function usePlaces () {
 
     const [places, setPlaces] = useState([]);
 
     async function post({startupId, type}) {
-    const { data: { message }} = await axios.post('/places/add', {
-        startupId: startupId,
-        type: type
-    })
 
-    return message;
+      return axios.post('/v1/places/create', {
+          startupId: startupId,
+          type: type
+      }).then(response => {
 
+        getPlaces();
+        return response;
+
+      })
     }
 
     function setPlace(place) {
-    return post(place);
+      return post(place);
     }
 
     async function get() {
-        const { data: { message }} = await axios.get('/places')
-    
-        const allPlaces = [];
-    
-        Object
-          .keys(message)
-          .forEach((base) => {
-            if (message[base].length === 0) allPlaces.push(base)
-            else message[base].forEach((specific) => {
-              allPlaces.push(`${specific} ${base}`)
-            })
-          })
-    
-          setPlaces(allPlaces)
-      }
-    
-      function getPlaces() {
-        get()
-      }
-    
-      useEffect(getPlaces, [])
+      const { data } = await axios.get('/v1/places/getAll');
+      setPlaces(data);  
+    }
 
-  return [places, setPlace];
+    function getPlaces() {
+      get()
+    }
 
+    useEffect(getPlaces, []);
+    
+    return [places, setPlace];
 }
