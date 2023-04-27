@@ -3,23 +3,25 @@ import { ConfirmationButton } from "../components/Buttons";
 import SendIcon from '@mui/icons-material/Send';
 import { useEffect, useState } from "react";
 import { Grid, Alert } from "@mui/material";
-import { useCreatePlace } from "../hooks/useCreatePlace";
+import { usePlaces } from "../hooks/usePlaces";
+import { ErrorAlert, SuccessAlert } from "../components/Alerts";
 
-const PlaceCreator = () => {
 
-    const [disableSubButton, setDisableSubButton] = useState(true);
-    const [registeredPlace, setRegisteredPlace] = useState(null);
-    const [loading, error, registerPlace] = useCreatePlace();
+const PlaceCreator = ({places, setPlaces}) => {
+
+    const [status, setStatus] = useState({code: 0, message: ""});
+
     const [formData, setFormData] = useState({
-        startupId: 0,
-        type: "",
+        startupId: null,
+        type: null,
     });
 
-    const handleSubmit = async (e) => {
-        e.preventDefault()
-        const response = await registerPlace(formData)
-        setRegisteredPlace(response)
-        window.location.reload(false);  // a refresh is needed to update PlaceList, to be changed
+    const handleSubmit = () => {
+
+        setPlaces(formData)
+        .then(() => setStatus({code: 2, message: "Place added successfully"}))
+        .catch((err) => setStatus({code: 1, message: err}))
+
     }
 
     const handleChangeStartID = (e) => {
@@ -36,68 +38,35 @@ const PlaceCreator = () => {
         })
     }
 
-    useEffect(() => {
-        setDisableSubButton(Object.values(formData).some(x => x === ''))
-    }, [formData])
     
-    return <section>
+    return (
+    
+    <section>
         <h1>Create a Place</h1>
-        {
-            <form>
-            {JSON.stringify(formData)}
+        <form>
             <Grid container spacing={2}>
-                    <Grid item xs={6}>
-                    <NumericField fieldTitle={"StartupID"}
-                        numValue={formData.startupId}
-                        onChange={handleChangeStartID}
-                    />
-                    </Grid>
-                    <Grid item xs={6}>
-                        <OptionsSelector fieldTitle={"Type"} 
-                            options = {["Personal Desk", "Meeting room", "Board"]}
-                            selectedOption = {formData.type}
-                            handleChange={handleChange}/>
-                    </Grid>
-                    <Grid item xs={12}>
-                        <ConfirmationButton title={"Send"} icon={<SendIcon />} onClick = {handleSubmit} disabled={loading | disableSubButton}/>
-                    </Grid>
+                <Grid item xs={6}>
+                <NumericField fieldTitle={"StartupID"}
+                    numValue={formData.startupId}
+                    onChange={handleChangeStartID}
+                />
                 </Grid>
-            </form>
+                <Grid item xs={6}>
+                    <OptionsSelector fieldTitle={"Type"} 
+                        options = {["Personal Desk", "Meeting room", "Board"]}
+                        selectedOption = {formData.type}
+                        handleChange={handleChange}/>
+                </Grid>
+                <Grid item xs={12}>
+                    <ConfirmationButton title={"Send"} icon={<SendIcon />} onClick = {handleSubmit} disabled={formData.startupId === null || formData.type === null}/>
+                </Grid>
+            </Grid>
+        </form>
 
-        }
-        {error != null &&
-            <Alert variant="outlined" severity="error" style={{ marginTop: '16px' }}>An error occured: {error}</Alert>
-        }
-        {registeredPlace != null &&
-            <Alert variant="outlined" severity="success" style={{ marginTop: '16px' }}> A new {registeredPlace.type} place was successfully created in the startup #{registeredPlace.startupId}</Alert>
-            //todo: add button to continue or do something next
-        }
-    </section>
+        { status.code === 1 ? <ErrorAlert message={status.message} /> : <></> }
+        { status.code === 2 ? <SuccessAlert message={status.message} /> : <></> }
+
+    </section>)
 };
-export default PlaceCreator
-
-/*
-    return(
-        <div>
-            <h1>Place</h1>
-                <Grid container spacing={2}>
-                    <Grid item xs={6}>
-                        <NumericField fieldTitle={"Startup Id"} numValue = {startupId} setNumValue = {setStartupId} />
-                    </Grid>
-                    <Grid item xs={6}>
-                        <OptionsSelector fieldTitle={"Type"} 
-                            options = {["Personal Desk", "Meeting", "Board"]}
-                            selectedOption = {type}
-                            setSelectedOption = {setType}
-                        />
-                    </Grid>
-                    <Grid item xs={12}>
-                        <ConfirmationButton title={"Send"} icon={<SendIcon />} onClick = {addAPlace}/>
-                    </Grid>
-                </Grid>
-        </div>
-    );
-}
 
 export default PlaceCreator;
-*/

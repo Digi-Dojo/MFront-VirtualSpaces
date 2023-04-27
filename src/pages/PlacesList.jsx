@@ -5,12 +5,7 @@ import { useEffect } from "react";
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 
-export const PlacesList = () => {
-    
-    const [places] = usePlaces();
-    useEffect(() => {
-        
-    }, [places])
+export const PlacesList = ({places, setPlaces}) => {
     
     return (
         <Grid container>

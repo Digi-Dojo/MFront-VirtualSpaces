@@ -8,6 +8,9 @@ import {NotesList} from './pages/OLDNotesList';
 import {PlacesList} from './pages/PlacesList';
 import { NotesInPlace } from './pages/NotesInPlace';
 import FullScreenDialog from './components/FullScreenDialog';
+import { useState } from 'react';
+import { usePlaces } from './hooks/usePlaces';
+import { useNotes } from './hooks/useNotes';
 /*
       <NotesList/>
       <br/> <br/>
@@ -15,13 +18,16 @@ import FullScreenDialog from './components/FullScreenDialog';
 
 function App() {
 
+  const [places, setPlaces] = usePlaces();
+  const [notes, setNotes] = useNotes();
+
   return (
     <div className="App">
-      <PlaceCreator />
+      <PlaceCreator places = {places} setPlaces = {setPlaces} />
       <br/> <br/>
-      <NoteCreator />
+      <NoteCreator notes = {notes} setNotes = {setNotes} places = {places} />
       <br/> <br/>
-      <PlacesList/>
+      <PlacesList places = {places} setPlaces = {setPlaces} />
       
     </div>
   );
