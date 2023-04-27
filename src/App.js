@@ -4,9 +4,10 @@ import PlaceCreator from './fragments/PlaceCreator';
 import NoteCreator from './fragments/NoteCreator';
 import NoteFragment from './fragments/NoteFragment';
 import PlaceFragment from './fragments/PlaceFragment';
-import {NotesList} from './components/NotesList';
-import {PlacesList} from './components/PlacesList';
-import { NotesInPlace } from './components/NotesInPlace';
+import {NotesList} from './pages/OLDNotesList';
+import {PlacesList} from './pages/PlacesList';
+import { NotesInPlace } from './pages/NotesInPlace';
+import FullScreenDialog from './components/FullScreenDialog';
 /*
       <NotesList/>
       <br/> <br/>

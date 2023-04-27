@@ -9,7 +9,7 @@ export const NotesInPlace = ({placeId}) => {
     return (
       <div>
         <h3>Current Notes:</h3>
-        {notesInPlace.map(note=> <NoteFragment key={note.id} note={note}/>)}
+        {notesInPlace.length === 0 ? "None" :notesInPlace.map(note=> <NoteFragment key={note.id} note={note}/>)}
       </div>
     );
 }
