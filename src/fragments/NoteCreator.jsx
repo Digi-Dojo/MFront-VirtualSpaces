@@ -61,6 +61,7 @@ const NoteCreator = ({notes, setNotes, places}) => {
                 
                     <Grid container spacing={2}>
                         <Grid item xs={12}>
+                        {JSON.stringify(formData)}
                             <OptionsSelector 
                                 fieldTitle = "Place" 
                                 options = { places.map((place, index) => place.id)} 

@@ -11,12 +11,12 @@ export const NotesInPlace = ({placeId}) => {
     return (
       <section>
       
-      <Grid container>
+      <Grid container spacing={0.5}>
         
-        <Grid item>
+        <Grid item xs={8}>
           <h1>Current Notes:</h1>
         </Grid>
-        <Grid item>
+        <Grid item xs={8}>
           <Box
             sx={{
               p: 2,
