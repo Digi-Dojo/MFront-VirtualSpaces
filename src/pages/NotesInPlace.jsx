@@ -5,7 +5,7 @@ import Box from '@mui/material/Box';
 
 export const NotesInPlace = ({placeId}) => {
     
-    const [notes] = useNotes();
+    const [notes, setNotes, invertStatusNote] = useNotes();
     const notesInPlace = notes.filter(note => note.placeId === placeId && note.statusAdded === true)
     // {notes.map((note => ((note.placeId = placeId?<NoteFragment key={note.id} note={note}/>: null)|| null)))}
     return (
@@ -25,7 +25,7 @@ export const NotesInPlace = ({placeId}) => {
               gap: 2,
             }}
           >
-            {notesInPlace.length === 0 ? "None" :notesInPlace.map(note=> <NoteFragment key={note.id} note={note}/>)}
+            {notesInPlace.length === 0 ? "None" :notesInPlace.map(note=> <NoteFragment key={note.id} note={note} invertStatusNote = {() => invertStatusNote(note.id)}/>)}
           </Box>
         </Grid>
       </Grid>
