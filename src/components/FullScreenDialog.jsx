@@ -7,8 +7,22 @@ import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import CloseIcon from '@mui/icons-material/Close';
+
+import AddIcon from '@mui/icons-material/Add';
 import { NotesInPlace } from '../pages/NotesInPlace';
 
+/*
+
+            <IconButton
+              edge="start"
+              color="inherit"
+              onClick={handleClose}
+              aria-label="add"
+            >
+              <AddIcon/>
+            </IconButton>
+
+*/
 
 export default function FullScreenDialog(props) {
   const [open, setOpen] = React.useState(false);
@@ -55,6 +69,7 @@ export default function FullScreenDialog(props) {
             <Typography sx={{ ml: 2, flex: 1 }} variant="h6" component="div">
               {props.type === 'notes' ? 'Notes' : 'Members'}
             </Typography>
+          
           </Toolbar>
         </AppBar>
         <ListType/>

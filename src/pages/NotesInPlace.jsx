@@ -9,12 +9,9 @@ export const NotesInPlace = ({placeId}) => {
     const notesInPlace = notes.filter(note => note.placeId === placeId && note.statusAdded === true)
     return (
       <section>
+      <h1>Current Notes:</h1>
       <Grid container spacing={0.5}>
-        
-        <Grid item xs={8}>
-          <h1>Current Notes:</h1>
-        </Grid>
-        <Grid item xs={8}>
+        <Grid item xs={0}>
           <Box
             sx={{
               p: 2,
