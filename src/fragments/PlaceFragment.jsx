@@ -25,7 +25,7 @@ const CustomIcon = (type) => {
 const PlaceFragment = ({ place }) => {
 
     return (
-    <div key={place.id} style={{padding: 50, backgroundColor: 'pink', borderRadius: '30px' }} key={place.id}>
+    <div key={place.id} style={{padding: 50, backgroundColor: 'pink', borderRadius: '30px' }}>
         <h3>Place #{place.id}</h3>
         <p>Startup: {place.startupId}</p>
         <CustomIcon type={place.type}/>

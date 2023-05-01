@@ -7,10 +7,8 @@ export const NotesInPlace = ({placeId}) => {
     
     const [notes, setNotes, invertStatusNote] = useNotes();
     const notesInPlace = notes.filter(note => note.placeId === placeId && note.statusAdded === true)
-    // {notes.map((note => ((note.placeId = placeId?<NoteFragment key={note.id} note={note}/>: null)|| null)))}
     return (
       <section>
-      
       <Grid container spacing={0.5}>
         
         <Grid item xs={8}>
@@ -21,7 +19,7 @@ export const NotesInPlace = ({placeId}) => {
             sx={{
               p: 2,
               display: 'grid',
-              gridTemplateColumns: { md: '1fr 1fr 1fr 1fr 1fr 1fr' },
+              gridTemplateColumns: { md: '1fr 1fr 1fr 1fr 1fr' },
               gap: 2,
             }}
           >

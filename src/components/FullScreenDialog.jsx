@@ -28,7 +28,7 @@ export default function FullScreenDialog(props) {
       case "members":
         return "TO BE IMPLEMENTED"
       default:
-        return JSON.stringify(props.type)+JSON.stringify(props.placeId)
+        return props.type+" is not a supported prop"
     }
   }
 
