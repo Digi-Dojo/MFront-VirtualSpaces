@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseURL = 'http://localhost:8080'
+const baseURL = 'https://mservice-virtualspaces2.onrender.com'
 
 export const client = axios.create({
   baseURL,
