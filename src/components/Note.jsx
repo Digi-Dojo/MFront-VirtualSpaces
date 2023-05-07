@@ -1,10 +1,9 @@
 
 import { Button } from '@mui/material';
 
-const NoteFragment = ({ note, invertStatusNote }) => {
+const Note = ({ note, invertStatusNote }) => {
     
-    
-    const date =  new Date (Date.parse(note.date))//note.date.getDate().toString() + "/" + (note.date.getMonth()+1).toString() + "/" + note.date.getFullYear().toString()
+    const date =  new Date (Date.parse(note.date))
     const dateToString = date.getDate().toString()+ "/" + (date.getMonth()+1).toString() + "/" + date.getFullYear().toString()
 
     const changeStatus = () => {
@@ -25,4 +24,4 @@ const NoteFragment = ({ note, invertStatusNote }) => {
     )
 }
 
-export default NoteFragment;
+export default Note;
