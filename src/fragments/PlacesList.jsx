@@ -1,6 +1,6 @@
-import PlaceFragment from "../fragments/PlaceFragment";
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
+import Place from "../components/Place";
 
 export const PlacesList = ({places, setPlaces}) => {
     
@@ -14,7 +14,7 @@ export const PlacesList = ({places, setPlaces}) => {
                 gap: 3,
               }}
             >
-              {places.map(place => place && <PlaceFragment style={{padding: '5px'}} key={place.id} place={place}/>)}
+              {places.map(place => place && <Place style={{padding: '5px'}} key={place.id} place={place}/>)}
             </Box>
         </Grid>
     );

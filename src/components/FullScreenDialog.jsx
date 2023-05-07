@@ -9,20 +9,8 @@ import Typography from '@mui/material/Typography';
 import CloseIcon from '@mui/icons-material/Close';
 
 import AddIcon from '@mui/icons-material/Add';
-import { NotesInPlace } from '../pages/NotesInPlace';
+import { NotesInPlace } from '../fragments/NotesInPlace';
 
-/*
-
-            <IconButton
-              edge="start"
-              color="inherit"
-              onClick={handleClose}
-              aria-label="add"
-            >
-              <AddIcon/>
-            </IconButton>
-
-*/
 
 export default function FullScreenDialog(props) {
   const [open, setOpen] = React.useState(false);

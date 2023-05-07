@@ -3,8 +3,8 @@ import GroupsIcon from '@mui/icons-material/Groups';
 import FilterFramesIcon from '@mui/icons-material/FilterFrames';
 import HourglassEmptyIcon from '@mui/icons-material/HourglassEmpty';
 import FullScreenDialog from '../components/FullScreenDialog';
-// <NotesInPlace placeId={place.id}/>
-const CustomIcon = (type) => {
+
+const CustomIcon = (type) => {  
      
     switch(type.type) {
         case 'PERSONAL_DESK':
@@ -21,10 +21,10 @@ const CustomIcon = (type) => {
     }
 }
 
-const PlaceFragment = ({ place }) => {
+const Place = ({ place }) => {
 
     return (
-    <div key={place.id} style={{padding: 50, backgroundColor: 'pink', borderRadius: '30px' }}>
+    <div key={place.id} style={{padding: 50, backgroundColor: 'pink', borderRadius: '30px' }} >
         <h3>Place #{place.id}</h3>
         <p>Startup: {place.startupId}</p>
         <CustomIcon type={place.type}/>
@@ -36,4 +36,4 @@ const PlaceFragment = ({ place }) => {
     )
 }
 
-export default PlaceFragment;
+export default Place;

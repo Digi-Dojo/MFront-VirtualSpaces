@@ -1,5 +1,5 @@
 import { useNotes } from "../hooks/useNotes";
-import NoteFragment from "../fragments/NoteFragment";
+import Note from "../components/Note";
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 
@@ -20,7 +20,7 @@ export const NotesInPlace = ({placeId}) => {
               gap: 2,
             }}
           >
-            {notesInPlace.length === 0 ? "None" :notesInPlace.map(note=> <NoteFragment key={note.id} note={note} invertStatusNote = {() => invertStatusNote(note.id)}/>)}
+            {notesInPlace.length === 0 ? "None" :notesInPlace.map(note=> <Note key={note.id} note={note} invertStatusNote = {() => invertStatusNote(note.id)}/>)}
           </Box>
         </Grid>
       </Grid>
