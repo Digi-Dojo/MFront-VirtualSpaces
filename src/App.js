@@ -15,12 +15,18 @@ function App() {
   return (
     <div className="App">
 
-      <Grid container spacing={2}>
-        <PlaceCreator places = {places} setPlaces = {setPlaces} />
+      <Grid container spacing={2} style={{margin: "auto", width: "80%"}}>
+        <div style={{width: "80%"}}>
+          <PlaceCreator places = {places} setPlaces = {setPlaces} />
+        </div>
         <br/> <br/>
-        <NoteCreator notes = {notes} setNotes = {setNotes} places = {places} />
+        <div style={{width: "80%"}}>
+          <NoteCreator notes = {notes} setNotes = {setNotes} places = {places} />
+        </div>
         <br/> <br/>
-        <PlacesList places = {places} setPlaces = {setPlaces} />
+        <div style={{width: "80%"}}>
+          <PlacesList places = {places} setPlaces = {setPlaces} />
+        </div>
       </Grid>
       
     </div>
