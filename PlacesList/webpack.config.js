@@ -4,7 +4,7 @@ const singleSpaDefaults = require("webpack-config-single-spa-react");
 module.exports = (webpackConfigEnv, argv) => {
   const defaultConfig = singleSpaDefaults({
     orgName: "startup-digi-dojo-lab",
-    projectName: "place-fragment",
+    projectName: "places-list",
     webpackConfigEnv,
     argv,
   });
