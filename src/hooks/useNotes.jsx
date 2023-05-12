@@ -19,20 +19,6 @@ export const useNotes = () => {
       return post(note);
     }
 
-    // async function remove(id) {
-    //   return axios.post('/v1/notes/create', {
-    //           text: text,
-    //           statusAdded: statusAdded,
-    //           placeId: placeId,
-    //           date: date
-    //       })
-    //       .then(message => message)
-    // }
-
-    // function removeNote(id) {
-    //   return remove(id);
-    // }
-
     async function invert(id) {
       await axios.get(`/v1/notes/invert/${id}`);
       get();

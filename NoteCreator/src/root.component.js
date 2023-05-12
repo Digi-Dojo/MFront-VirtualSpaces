@@ -1,11 +1,9 @@
 import { OptionsSelector, TextArea } from '../components/Fields';
-import { useState, useEffect } from 'react';
-import { usePlaces } from './hooks/usePlaces';
-import { ConfirmationButton } from './components/Buttons';
-import { Grid, Alert, FormControlLabel, Switch } from '@mui/material';
+import { useState } from 'react';
+import { ConfirmationButton } from '../components/Buttons';
+import { Grid } from '@mui/material';
 import SendIcon from '@mui/icons-material/Send';
-import { useNotes } from './hooks/useNotes';
-import { ErrorAlert, SuccessAlert } from './components/Alerts';
+import { ErrorAlert, SuccessAlert } from '../components/Alerts';
 
 const NoteCreator = ({notes, setNotes, places}) => {
 
@@ -32,15 +30,7 @@ const NoteCreator = ({notes, setNotes, places}) => {
             text: e.target.value,
         })
     }
-/*
-    const handleStatChange = (e) => {
-        setFormData({
-            ...formData, 
-            statusAdded: !status,
-        })
-        setStatus(e.target.checked)
-    }
-*/
+    
     const handleChangePlaceID = (e) => {
         setFormData({
             ...formData, 
@@ -48,11 +38,6 @@ const NoteCreator = ({notes, setNotes, places}) => {
         })
     }
 
-    /*
-        <Grid item xs={12}>
-            <FormControlLabel control={<Switch checked={status} onChange={handleStatChange}  inputProps={{ 'aria-label': 'controlled' }}/>} label="Status" />
-        </Grid>
-    */
     return (
         <section>
             <h1>Create a note</h1>
