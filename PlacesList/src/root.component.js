@@ -1,8 +1,8 @@
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
-import Place from "../components/Place";
+import Place from "./components/Place";
 
-export const PlacesList = ({places, setPlaces}) => {
+ const PlacesList = ({places, setPlaces}) => {
     
     return (
         <Grid container>
@@ -25,4 +25,6 @@ export const PlacesList = ({places, setPlaces}) => {
     );
        
 }
+
+export default PlacesList;
 
