@@ -5,10 +5,10 @@ export const useNotes = () => {
 
     const [notes, setNotes] = useState([]);
 
-    async function post({text, status, placeId, date}) {
+    async function post({text, statusAdded, placeId, date}) {
       return axios.post('/v1/notes/create', {
               text: text,
-              status: status,
+              statusAdded: statusAdded,
               placeId: placeId,
               date: date
           })
@@ -17,6 +17,15 @@ export const useNotes = () => {
 
     function setNote(note) {
       return post(note);
+    }
+
+    async function invert(id) {
+      await axios.get(`/v1/notes/invert/${id}`);
+      get();
+    }
+
+    function invertStatusNote(id) {
+      return invert(id);
     }
 
 
@@ -31,5 +40,5 @@ export const useNotes = () => {
 
   useEffect(getNotes, []);
 
-  return [notes, setNote];
+  return [notes, setNote, invertStatusNote];
 };

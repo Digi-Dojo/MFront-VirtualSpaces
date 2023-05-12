@@ -1,5 +1,5 @@
 {
-  "name": "@startup-digi-dojo-lab/place-fragment",
+  "name": "@startup-digi-dojo-lab/places-list",
   "scripts": {
     "start": "webpack serve",
     "start:standalone": "webpack serve --env standalone",
