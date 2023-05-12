@@ -9,70 +9,36 @@ import Typography from '@mui/material/Typography';
 import CloseIcon from '@mui/icons-material/Close';
 
 import AddIcon from '@mui/icons-material/Add';
-import { NotesInPlace } from '../pages/NotesInPlace';
 
-/*
-
-            <IconButton
-              edge="start"
-              color="inherit"
-              onClick={handleClose}
-              aria-label="add"
-            >
-              <AddIcon/>
-            </IconButton>
-
-*/
-
-export default function FullScreenDialog(props) {
-  const [open, setOpen] = React.useState(false);
-
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
-
-  const ListType = () => {
-    switch (props.type) {
-      case "notes":
-        return <NotesInPlace placeId={props.placeId}/>
-      case "members":
-        return "TO BE IMPLEMENTED"
-      default:
-        return props.type+" is not a supported prop"
-    }
-  }
+export default function FullScreenDialog({title, status, setStatus, content}) {
 
   return (
     <div>
-      <Button variant="outlined" onClick={handleClickOpen}>
-      {props.type === 'notes' ? 'Attached Notes' : 'Current members'}
-      </Button>
+
       <Dialog
         fullScreen
-        open={open}
-        onClose={handleClose}
+        open={status}
+        onClose={() => setStatus(false)}
       >
         <AppBar sx={{ position: 'relative' }}>
           <Toolbar>
             <IconButton
               edge="start"
               color="inherit"
-              onClick={handleClose}
+              onClick={() => setStatus(false)}
               aria-label="close"
             >
               <CloseIcon />
             </IconButton>
+
             <Typography sx={{ ml: 2, flex: 1 }} variant="h6" component="div">
-              {props.type === 'notes' ? 'Notes' : 'Members'}
-            </Typography>
-          
+              {title}
+            </Typography>          
           </Toolbar>
         </AppBar>
-        <ListType/>
+
+        {content}
+
       </Dialog>
     </div>
   );

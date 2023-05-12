@@ -2,7 +2,8 @@ import DesktopMacIcon from '@mui/icons-material/DesktopMac';
 import GroupsIcon from '@mui/icons-material/Groups';
 import FilterFramesIcon from '@mui/icons-material/FilterFrames';
 import HourglassEmptyIcon from '@mui/icons-material/HourglassEmpty';
-import FullScreenDialog from '../components/FullScreenDialog';
+import { NotesInPlace } from './pages/NotesInPlace';
+import FullScreenDialog from './components/FullScreenDialog';
 // <NotesInPlace placeId={place.id}/>
 const CustomIcon = (type) => {
      
@@ -24,7 +25,7 @@ const CustomIcon = (type) => {
 const PlaceFragment = ({ place }) => {
 
     return (
-    <div key={place.id} style={{padding: 50, backgroundColor: 'pink', borderRadius: '30px' }}>
+    <div key={place.id} style={{padding: 50, backgroundColor: 'pink', borderRadius: '30px' }} key={place.id}>
         <h3>Place #{place.id}</h3>
         <p>Startup: {place.startupId}</p>
         <CustomIcon type={place.type}/>
