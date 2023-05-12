@@ -2,7 +2,7 @@ import DesktopMacIcon from '@mui/icons-material/DesktopMac';
 import GroupsIcon from '@mui/icons-material/Groups';
 import FilterFramesIcon from '@mui/icons-material/FilterFrames';
 import HourglassEmptyIcon from '@mui/icons-material/HourglassEmpty';
-import FullScreenDialog from '../components/FullScreenDialog';
+import FullScreenDialog from './FullScreenDialog';
 import { Button } from '@mui/material';
 import { useState } from 'react';
 import { NotesInPlace } from './NotesInPlace';

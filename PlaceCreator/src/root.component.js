@@ -1,9 +1,9 @@
-import { OptionsSelector, NumericField } from "../components/Fields";
-import { ConfirmationButton } from "../components/Buttons";
+import { OptionsSelector, NumericField } from "./components/Fields";
+import { ConfirmationButton } from "./components/Buttons";
 import SendIcon from '@mui/icons-material/Send';
 import { useState } from "react";
 import { Grid } from "@mui/material";
-import { ErrorAlert, SuccessAlert } from "../components/Alerts";
+import { ErrorAlert, SuccessAlert } from "./components/Alerts";
 
 
 const PlaceCreator = ({places, setPlaces}) => {
