@@ -1,9 +1,9 @@
-// import { OptionsSelector, TextArea } from './components/Fields';
-// import { useState } from 'react';
-// import { ConfirmationButton } from './components/Buttons';
-// import { Grid } from '@mui/material';
-// import SendIcon from '@mui/icons-material/Send';
-// import { ErrorAlert, SuccessAlert } from './components/Alerts';
+import { OptionsSelector, TextArea } from './components/Fields';
+import { useState } from 'react';
+import { ConfirmationButton } from './components/Buttons';
+import { Grid } from '@mui/material';
+import SendIcon from '@mui/icons-material/Send';
+import { ErrorAlert, SuccessAlert } from './components/Alerts';
 
 const NoteCreator = ({notes, setNotes, places}) => {
 
