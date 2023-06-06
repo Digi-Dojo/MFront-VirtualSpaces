@@ -6,7 +6,9 @@ import { Grid } from "@mui/material";
 import { ErrorAlert, SuccessAlert } from "./components/Alerts";
 
 
-const PlaceCreator = ({places, setPlaces}) => {
+const PlaceCreator = () => {
+
+    const [places, setPlaces] = useState([]);
 
     const [status, setStatus] = useState({code: 0, message: ""});
 

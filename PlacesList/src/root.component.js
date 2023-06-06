@@ -2,7 +2,11 @@ import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Place from "./components/Place";
 
- const PlacesList = ({places, setPlaces}) => {
+ const PlacesList = () => {
+
+  // const [placces]
+
+  const places = [{ startupId: 2, type: "BOARD"}, { startupId: 5, type: "MEETING ROOM"}, { startupId: 6, type: "PERSONAL DESK"}]
     
     return (
         <Grid container>
