@@ -6,7 +6,6 @@
     "build": "concurrently npm:build:*",
     "build:webpack": "webpack --mode=production",
     "analyze": "webpack --mode=production --env analyze",
-    "lint": "eslint src --ext js",
     "format": "prettier --write .",
     "check-format": "prettier --check .",
     "test": "cross-env BABEL_ENV=test jest",
