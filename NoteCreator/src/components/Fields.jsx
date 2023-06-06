@@ -29,6 +29,7 @@ const OptionsSelector = ({fieldTitle, options, selectedOption, handleChange}) =>
                 value={selectedOption}
                 label={fieldTitle}
                 onChange={handleChange}
+                style = {{height: "50px"}}
             >
                 {
                     options.map(option => 
@@ -45,7 +46,8 @@ const TextArea = ({title, setContent, onChange}) => {
     
     return (
         <TextareaAutosize
-            minRows={3}
+            minRows={1}
+            maxRows={1}
             placeholder={title}
             style={{ width: "100%"}}
             required

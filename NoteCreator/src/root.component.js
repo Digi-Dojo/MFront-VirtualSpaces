@@ -44,10 +44,10 @@ const NoteCreator = () => {
     }
 
     return (
-        <section>
-            <h1>Create a note</h1>
+        <section style={{marginTop: "4px"}}>
+            {/* <h5>Create a note</h5> */}
             
-                <form>
+                <form >
                 
                     <Grid container spacing={2}>
                         <Grid item xs={12}>
@@ -62,7 +62,7 @@ const NoteCreator = () => {
                             <TextArea title = "Note" setContent = {formData.text} onChange={handleDesChange}/> 
                         </Grid>
                         <Grid item xs={12}>
-                            <ConfirmationButton title={"Send"} icon={<SendIcon />} onClick = {handleSubmit} disabled = { formData.text === "" || formData.placeId === 0 }/>
+                            <ConfirmationButton title={"Add Note"} onClick = {handleSubmit} disabled = { formData.text === "" || formData.placeId === 0 }/>
                         </Grid>
                     </Grid>
 
