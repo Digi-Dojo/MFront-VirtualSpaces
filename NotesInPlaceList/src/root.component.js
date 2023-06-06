@@ -1,31 +1,33 @@
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Place from "./components/Place";
+import Note from './components/Note';
 
  const NotesInPlaceList = () => {
 
   // const [placces]
 
-  const places = [{ startupId: 2, type: "BOARD"}, { startupId: 5, type: "MEETING ROOM"}, { startupId: 6, type: "PERSONAL DESK"}]
+  const notesInPlace = [{ id: 2, text: "AOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO", date: "10/20/30"}, { id: 2, text: "we", date: "10/20/30"}, { id: 2, text: "we", date: "10/20/30"}]
     
     return (
-        <Grid container>
-            <Box
-              sx={{
-                p: 2,
-                display: 'grid',
-                /* TODO:
-                    Deciding the place used by a UI element inside itself it's not so good, especially because
-                    this gridTemplateColumns makes it go out the borders of an external container. So this should
-                    be adjusted such that it takes 100% of the space and that could be externally reduced
-                 */
-                gridTemplateColumns: { md: '1fr 1fr 1fr 1fr' },
-                gap: 3,
-              }}
-            >
-              {places.map(place => place && <Place style={{padding: '5px'}} key={place.id} place={place}/>)}
-            </Box>
-        </Grid>
+
+        <section>
+          {/* <h5>Current Notes:</h5> */}
+          <Grid container spacing={0.5}>
+              <Grid item xs={12} >
+                {/* <Box
+                  sx={{
+                    p: 2,
+                    display: 'grid',
+                    gridTemplateColumns: { md: '1fr 1fr 1fr 1fr 1fr' },
+                    gap: 2,
+                  }}
+                > */}
+                  {notesInPlace.length === 0 ? "None" :notesInPlace.map(note=> <div style={{marginTop: "10px"}}><Note key={note.id} note={note} invertStatusNote = {() => invertStatusNote(note.id)}/></div> )}
+                {/* </Box> */}
+              </Grid>
+            </Grid>
+        </section>
     );
        
 }
