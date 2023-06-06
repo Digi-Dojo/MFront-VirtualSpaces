@@ -7,7 +7,7 @@ import Note from './components/Note';
 
   // const [placces]
 
-  const notesInPlace = [{ id: 2, text: "AOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO", date: "10/20/30"}, { id: 2, text: "we", date: "10/20/30"}, { id: 2, text: "we", date: "10/20/30"}]
+  const notesInPlace = [{ id: 2, text: "we", date: "10/20/30"}, { id: 2, text: "we", date: "10/20/30"}, { id: 2, text: "we", date: "10/20/30"}]
     
     return (
 
