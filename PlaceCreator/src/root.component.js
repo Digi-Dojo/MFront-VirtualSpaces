@@ -42,8 +42,7 @@ const PlaceCreator = () => {
     
     return (
     
-    <section>
-        <h1>Create a Place</h1>
+    <div style={{marginTop: "4px", minWidth: "50vw"}}>
         <form>
             <Grid container spacing={2}>
                 <Grid item xs={6}>
@@ -67,7 +66,7 @@ const PlaceCreator = () => {
         { status.code === 1 ? <ErrorAlert message={status.message} /> : <></> }
         { status.code === 2 ? <SuccessAlert message={status.message} /> : <></> }
 
-    </section>)
+    </div>)
 };
 
 export default PlaceCreator;
