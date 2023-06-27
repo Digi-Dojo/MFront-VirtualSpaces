@@ -1,6 +1,4 @@
 import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
-import Place from "./components/Place";
 import Note from './components/Note';
 
  const NotesInPlaceList = () => {
