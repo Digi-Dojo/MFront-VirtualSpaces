@@ -3,7 +3,7 @@ import {client as axios} from '../utils/axios'
 
 export const useNotes = () => {
 
-    const [notes, setNotes] = useState([]);
+    // const [notes, setNotes] = useState([]);
 
     async function post({text, statusAdded, placeId, date}) {
       return axios.post('/v1/notes/create', {
@@ -15,30 +15,30 @@ export const useNotes = () => {
           .then(message => message)
     }
 
-    function setNote(note) {
-      return post(note);
+    async function addNote(note) {
+      return await post(note);
     }
 
-    async function invert(id) {
-      await axios.get(`/v1/notes/invert/${id}`);
-      get();
-    }
+  //   async function invert(id) {
+  //     await axios.get(`/v1/notes/invert/${id}`);
+  //     get();
+  //   }
 
-    function invertStatusNote(id) {
-      return invert(id);
-    }
+  //   function invertStatusNote(id) {
+  //     return invert(id);
+  //   }
 
 
-    async function get() {
-      const { data } = await axios.get('/v1/notes/getAll');
-      setNotes(data);
-    }
+  //   async function get() {
+  //     const { data } = await axios.get('/v1/notes/getAll');
+  //     setNotes(data);
+  //   }
 
-    function getNotes() {
-      get();
-    }
+  //   function getNotes() {
+  //     get();
+  //   }
 
-  useEffect(getNotes, []);
+  // useEffect(getNotes, []);
 
-  return [notes, setNote, invertStatusNote];
+  return {addNote};
 };

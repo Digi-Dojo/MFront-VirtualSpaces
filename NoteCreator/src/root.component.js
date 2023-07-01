@@ -4,6 +4,7 @@ import { ConfirmationButton } from './components/Buttons';
 import { Grid } from '@mui/material';
 import SendIcon from '@mui/icons-material/Send';
 import { ErrorAlert, SuccessAlert } from './components/Alerts';
+import { useNotes } from './hooks/useNotes';
 
 const NoteCreator = () => {
     
@@ -11,11 +12,14 @@ const NoteCreator = () => {
 
     const places = [{id: 2}, {id: 1}, {id:4}];
 
+    const {addNote} = useNotes();
+
     //0 - no status | 1 - error | 2 - success
     const [status, setStatus] = useState({code: 0, message: ""});
     const currentDate = new Date()
     const [formData, setFormData] = useState({
         text: "",
+        placeId: 109,
         statusAdded: true,
         date: currentDate.getDate().toString() + "/" + (currentDate.getMonth()+1).toString() + "/" + currentDate.getFullYear().toString(),
     })
@@ -23,7 +27,7 @@ const NoteCreator = () => {
     
     const handleSubmit = async(e) => {
             
-        setNotes(formData)
+        addNote(formData)
         .then(() => setStatus({code: 2, message: "Note added successfully"}))
         .catch((err) => setStatus({code: 1, message: err}))
             
@@ -49,15 +53,15 @@ const NoteCreator = () => {
             
                 <form >
                 
-                    <Grid container spacing={2}>
-                        <Grid item xs={12}>
+                    <Grid container spacing={2} style={{marginTop: "2px"}}>
+                        {/* <Grid item xs={12}>
                             <OptionsSelector 
                                 fieldTitle = "Place" 
                                 options = { places.map((place, index) => place.id)} 
                                 selectedOption = {formData.placeId} 
                                 handleChange={handleChangePlaceID}
                             />
-                        </Grid>
+                        </Grid> */}
                         <Grid item xs={12}>
                             <TextArea title = "Note" setContent = {formData.text} onChange={handleDesChange}/> 
                         </Grid>
@@ -67,9 +71,6 @@ const NoteCreator = () => {
                     </Grid>
 
                 </form>
-
-                { status.code === 1 ? <ErrorAlert message={status.message} /> : <></> }
-                { status.code === 2 ? <SuccessAlert message={status.message} /> : <></> }
 
 
         </section>

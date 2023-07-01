@@ -46,8 +46,8 @@ const TextArea = ({title, setContent, onChange}) => {
     
     return (
         <TextareaAutosize
-            minRows={1}
-            maxRows={1}
+            minRows={3}
+            maxRows={3}
             placeholder={title}
             style={{ width: "100%"}}
             required
