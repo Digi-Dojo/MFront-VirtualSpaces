@@ -145,8 +145,8 @@ function App() {
 
   const handleMouseDown = (e) => {
     let { clientX, clientY } = e;
-    clientX = clientX - 450;
-    clientY = clientY - 350;
+    clientX = clientX - 440;
+    clientY = clientY - 230;
     const canvas = document.getElementById("canvas");
     const context = canvas.getContext("2d");
 
@@ -214,8 +214,8 @@ function App() {
     const canvas = document.getElementById("canvas");
     const context = canvas.getContext("2d");
     let { clientX, clientY } = e;
-    clientX = clientX - 450;
-    clientY = clientY - 350;
+    clientX = clientX - 440;
+    clientY = clientY - 230;
     if (toolType === "selection") {
       const element = getElementAtPosition(clientX, clientY, elements);
       e.target.style.cursor = element
