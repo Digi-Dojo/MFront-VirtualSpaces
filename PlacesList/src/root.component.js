@@ -1,13 +1,16 @@
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Place from "./components/Place";
+import { usePlaces } from './hooks/usePlaces';
 
  const PlacesList = () => {
 
   // const [placces]
 
-  const places = [{ startupId: 2, type: "BOARD"}, { startupId: 5, type: "MEETING ROOM"}, { startupId: 6, type: "PERSONAL DESK"}, { startupId: 2, type: "BOARD"}, { startupId: 5, type: "MEETING ROOM"}, { startupId: 6, type: "PERSONAL DESK"}, { startupId: 2, type: "BOARD"}, { startupId: 5, type: "MEETING ROOM"}]
-    
+  // const places = [{ startupId: 2, type: "BOARD"}, { startupId: 5, type: "MEETING ROOM"}, { startupId: 6, type: "PERSONAL DESK"}, { startupId: 2, type: "BOARD"}, { startupId: 5, type: "MEETING ROOM"}, { startupId: 6, type: "PERSONAL DESK"}, { startupId: 2, type: "BOARD"}, { startupId: 5, type: "MEETING ROOM"}]
+  
+  const {places} = usePlaces();
+
       return (
           <Grid container>
               <Box

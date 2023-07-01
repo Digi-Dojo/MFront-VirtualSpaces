@@ -4,11 +4,12 @@ import SendIcon from '@mui/icons-material/Send';
 import { useState } from "react";
 import { Grid } from "@mui/material";
 import { ErrorAlert, SuccessAlert } from "./components/Alerts";
+import { usePlaces } from "./hooks/usePlaces";
 
 
 const PlaceCreator = () => {
 
-    const [places, setPlaces] = useState([]);
+    const {addPlace} = usePlaces();
 
     const [status, setStatus] = useState({code: 0, message: ""});
 
@@ -19,7 +20,7 @@ const PlaceCreator = () => {
 
     const handleSubmit = () => {
 
-        setPlaces(formData)
+        addPlace(formData)
         .then(() => setStatus({code: 2, message: "Place added successfully"}))
         .catch((err) => setStatus({code: 1, message: err}))
 

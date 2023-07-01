@@ -10,9 +10,9 @@ import { useState } from 'react';
 const CustomIcon = (type) => {  
      
     switch(type.type) {
-        case 'PERSONAL DESK':
+        case 'PERSONAL_DESK':
             return <DesktopMacIcon/>;
-        case 'MEETING ROOM':
+        case 'MEETING_ROOM':
             return <GroupsIcon/>
         case 'BOARD':
             return <FilterFramesIcon/>
@@ -21,6 +21,19 @@ const CustomIcon = (type) => {
                 <HourglassEmptyIcon/>
                 {/* {type.type} */}
             </section>
+    }
+}
+
+const getNameType = (type) => {
+    switch(type) {
+        case 'PERSONAL_DESK':
+            return "PERSONAL DESK";
+        case 'MEETING_ROOM':
+            return "MEETING ROOM";
+        case 'BOARD':
+            return "BOARD";
+        default:
+            return "UNKNOWN"
     }
 }
 
@@ -40,7 +53,7 @@ const Place = ({ place }) => {
                 <CustomIcon type={place.type}/>
             </Grid>
             <Grid item xs={12}>
-                <p>{place.type}</p>
+                <p>{getNameType(place.type)}</p>
             </Grid>
             <Grid item xs={12}>
                 <Button variant="outlined" onClick={() => handleJoinButtonClick()}> Join </Button>

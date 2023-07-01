@@ -7,31 +7,15 @@ export function usePlaces () {
 
     async function post({startupId, type}) {
 
-      return axios.post('/v1/places/create', {
+      return await axios.post('/v1/places/create', {
           startupId: startupId,
           type: type
-      }).then(response => {
-
-        getPlaces();
-        return response;
-
       })
     }
 
-    function setPlace(place) {
+    async function addPlace(place) {
       return post(place);
     }
-
-    async function get() {
-      const { data } = await axios.get('/v1/places/getAll');
-      setPlaces(data);  
-    }
-
-    function getPlaces() {
-      get()
-    }
-
-    useEffect(getPlaces, []);
     
-    return [places, setPlace];
+    return {addPlace};
 }
