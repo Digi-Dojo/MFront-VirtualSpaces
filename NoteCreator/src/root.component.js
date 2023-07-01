@@ -20,7 +20,7 @@ const NoteCreator = () => {
     currentDate.setDate(currentDate.getDate() + 1);
     const [formData, setFormData] = useState({
         text: "",
-        placeId: 109,
+        placeId: 68,
         statusAdded: true,
         date: currentDate.getDate().toString() + "/" + (currentDate.getMonth()+1).toString() + "/" + currentDate.getFullYear().toString(),
     })
