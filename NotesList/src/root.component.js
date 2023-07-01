@@ -1,12 +1,17 @@
 import Grid from '@mui/material/Grid';
 import Note from './components/Note';
+import { useNotes } from './hooks/useNotes';
 
  const NotesList = () => {
 
   // const [placces]
 
-  const notesInPlace = [{ id: 2, text: "we", date: "10/20/30"}, { id: 2, text: "we", date: "10/20/30"}, { id: 2, text: "we", date: "10/20/30"}]
-    
+  // const notesInPlace = [{ id: 2, text: "we", date: "10/20/30"}, { id: 2, text: "we", date: "10/20/30"}, { id: 2, text: "we", date: "10/20/30"}]
+  
+  const {notes, invertStatusNote} = useNotes();
+
+  const notesInPlace = notes.filter(note => note.statusAdded === true);
+  
     return (
 
         <section>

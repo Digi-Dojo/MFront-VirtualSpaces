@@ -5,7 +5,7 @@ import Box from '@mui/material/Box';
 
 export const NotesInPlace = ({placeId}) => {
     
-    const [notes, setNotes, invertStatusNote] = useNotes();
+    const {notes, invertStatusNote} = useNotes();
     const notesInPlace = notes.filter(note => note.placeId === placeId && note.statusAdded === true)
     
     return (

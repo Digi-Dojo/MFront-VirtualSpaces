@@ -16,7 +16,8 @@ const NoteCreator = () => {
 
     //0 - no status | 1 - error | 2 - success
     const [status, setStatus] = useState({code: 0, message: ""});
-    const currentDate = new Date()
+    const currentDate = new Date();
+    currentDate.setDate(currentDate.getDate() + 1);
     const [formData, setFormData] = useState({
         text: "",
         placeId: 109,
