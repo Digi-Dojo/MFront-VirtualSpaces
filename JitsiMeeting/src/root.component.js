@@ -1,11 +1,14 @@
-import logo from './logo.svg';
-import './App.css';
-import JitsiComponent from './JitsiComponent';
+
+import { JitsiMeeting } from '@jitsi/react-sdk';
 
 function App() {
   return (
     <div className="App">
-      <JitsiComponent />
+      <JitsiMeeting
+          roomName = { 'YOUR_CUSTOM_ROOM_NAME' } 
+          getIFrameRef = { node => node.style.height = '800px' }
+          useStaging = { true }
+        />
     </div>
   );
 }
