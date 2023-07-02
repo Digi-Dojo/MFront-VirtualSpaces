@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import {client as axios} from '../utils/axios'
 
-export const useNotes = () => {
+export const useNotes = ({placeId}) => {
+
 
     const [notes, setNotes] = useState([]);
 
@@ -16,15 +17,17 @@ export const useNotes = () => {
 
 
     async function get() {
-      const { data } = await axios.get('/v1/notes/getAll');
+      const { data } = await axios.get(`/v1/notes/getFromPlaceId/${placeId}`);
       setNotes(data);
     }
 
     function getNotes() {
-      get();
+      if(placeId)
+        get();
     }
 
     useEffect(() => {
+      console.log(placeId);
       getNotes();
   
       const interval = setInterval(getNotes, 5000);
@@ -32,7 +35,7 @@ export const useNotes = () => {
       return () => {
         clearInterval(interval);
       };
-    }, []);
+    }, [placeId]);
 
 
   return {notes, invertStatusNote};

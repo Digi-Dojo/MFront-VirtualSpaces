@@ -42,8 +42,8 @@ const Place = ({ place }) => {
     const [notesOpened, setNotesOpened] = useState(false);
     const [membersOpened, setMembersOpened] = useState(false);
 
-    const handleJoinButtonClick = () => {
-        window.location.href = '/GeneralPlace';
+    const handleJoinButtonClick = (id) => {
+        window.location.href = `/GeneralPlace?id=${id}`;
     };
 
     return (
@@ -56,7 +56,7 @@ const Place = ({ place }) => {
                 <p>{getNameType(place.type)}</p>
             </Grid>
             <Grid item xs={12}>
-                <Button variant="outlined" onClick={() => handleJoinButtonClick()}> Join </Button>
+                <Button variant="outlined" onClick={() => handleJoinButtonClick(place.id)}> Join </Button>
             </Grid>
             {/*
                 TODO:

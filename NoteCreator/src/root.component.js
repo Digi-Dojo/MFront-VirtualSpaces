@@ -5,14 +5,20 @@ import { Grid } from '@mui/material';
 import SendIcon from '@mui/icons-material/Send';
 import { ErrorAlert, SuccessAlert } from './components/Alerts';
 import { useNotes } from './hooks/useNotes';
+import {useEffect} from 'react';
 
 const NoteCreator = () => {
+
+    const [placeId, setPlaceId] = useState();
+
+    useEffect(() => {
+        const params = new URLSearchParams(window.location.search);
+        const id = params.get('id');
+        setPlaceId(id);
+    }, []);
+
     
-    const [notes, setNotes] = useState("");
-
-    const places = [{id: 2}, {id: 1}, {id:4}];
-
-    const {addNote} = useNotes();
+    const {addNote} = useNotes({placeId});
 
     //0 - no status | 1 - error | 2 - success
     const [status, setStatus] = useState({code: 0, message: ""});
@@ -20,7 +26,6 @@ const NoteCreator = () => {
     currentDate.setDate(currentDate.getDate() + 1);
     const [formData, setFormData] = useState({
         text: "",
-        placeId: 68,
         statusAdded: true,
         date: currentDate.getDate().toString() + "/" + (currentDate.getMonth()+1).toString() + "/" + currentDate.getFullYear().toString(),
     })
@@ -50,19 +55,10 @@ const NoteCreator = () => {
 
     return (
         <section style={{marginTop: "4px"}}>
-            {/* <h5>Create a note</h5> */}
             
                 <form >
                 
                     <Grid container spacing={2} style={{marginTop: "2px"}}>
-                        {/* <Grid item xs={12}>
-                            <OptionsSelector 
-                                fieldTitle = "Place" 
-                                options = { places.map((place, index) => place.id)} 
-                                selectedOption = {formData.placeId} 
-                                handleChange={handleChangePlaceID}
-                            />
-                        </Grid> */}
                         <Grid item xs={12}>
                             <TextArea title = "Note" setContent = {formData.text} onChange={handleDesChange}/> 
                         </Grid>
